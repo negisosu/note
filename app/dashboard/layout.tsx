@@ -1,3 +1,5 @@
+import { AppSidebar } from "@/components/elements/AppSIdebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getServerSession } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
 
@@ -15,7 +17,13 @@ export default async function Layout({
 
     return (
     <>
-        {children}
+        <SidebarProvider>
+            <AppSidebar/>
+            <SidebarTrigger/>
+            <main>
+                {children}
+            </main>
+        </SidebarProvider>
     </>
     );
 }
