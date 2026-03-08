@@ -1,8 +1,10 @@
 import Tiptap from "@/components/elements/Tiptap/Tiptap"
 import prisma from "@/lib/prisma"
 import { notFound } from "next/navigation"
-import { JSONContent } from "@tiptap/react"
-import { updateNoteBodyAction } from "@/actions/note"
+import { updateNoteBodyAction, updateNoteTitleAction } from "@/actions/note"
+import type { Note } from "@/types/note"
+import { NoteTitleInput } from "@/components/Note/NoteTitleInput"
+import { Separator } from "@/components/ui/separator"
 
 interface PageProps {
     params: {
@@ -18,25 +20,23 @@ export default async function Page({ params }: PageProps) {
         where: {
             id: id
         }
-    })
+    }) as Note | null
 
     if(!note){
         notFound()
     }
 
-    const updateNoteBody = async (body: JSONContent) => {
-        "use server"
-
-        await updateNoteBodyAction({ id: id, body: body })
-    }
-
     return(
-        <>
-            <div>{note.title}</div>
-            <Tiptap
-            defaultValue={note.body as JSONContent}
-            updateNoteBody={updateNoteBody}
+        <div className="space-y-8">
+            <NoteTitleInput
+            note={note}
+            updateNoteTitle={updateNoteTitleAction}
             />
-        </>
+            <Separator/>
+            <Tiptap
+            note={note}
+            updateNoteBody={updateNoteBodyAction}
+            />
+        </div>
     )
 }
