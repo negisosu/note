@@ -1,16 +1,18 @@
 'use client'
 
-import { useEditor, EditorContent, Content } from '@tiptap/react'
+import { useEditor, EditorContent, Content, JSONContent, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { PlaceholderKit } from './extensions/Placeholder'
 import '@/app/tiptap.css'
 import '@/app/markdown.css'
+import { useDebouncedCallback } from "use-debounce"
 
 interface TiptapProps {
     defaultValue: Content,
+    updateNoteBody: (body: JSONContent) => Promise<void>
 }
 
-const Tiptap = ({ defaultValue }: TiptapProps) => {
+const Tiptap = ({ defaultValue, updateNoteBody }: TiptapProps) => {
 
     const editor = useEditor({
         extensions: [
@@ -25,6 +27,9 @@ const Tiptap = ({ defaultValue }: TiptapProps) => {
         // Don't render immediately on the server to avoid SSR issues
         // 直訳: SSRの問題を回避するためにサーバー上ですぐにレンダリングしないでください
         immediatelyRender: false,
+        onUpdate: useDebouncedCallback(({ editor }: { editor: Editor }) => {
+            updateNoteBody(editor.getJSON())
+        }, 2000)
     })
 
     return <EditorContent

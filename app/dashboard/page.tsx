@@ -1,26 +1,7 @@
 import { SessionIcon } from "@/components/elements/SessionIcon";
 import { getServerSession } from "@/lib/auth-server";
-import prisma from "@/lib/prisma";
-import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
-
-async function createEmptyNote() {
-    "use server";
-
-    const session = await getServerSession();
-    if (!session) {
-        redirect("/");
-    }
-
-    const note = await prisma.note.create({
-        data: {
-            title: "",
-            body: "",
-        },
-    });
-
-    redirect(`/dashboard/${note.id}`);
-}
+import { createEmptyNoteAction } from "@/actions/note";
 
 export default async function Page() {
 
@@ -29,7 +10,7 @@ export default async function Page() {
     return(
         <div>
             dashboard
-            <form action={createEmptyNote}>
+            <form action={createEmptyNoteAction}>
                 <Button type="submit">新規ノート作成</Button>
             </form>
             <SessionIcon session={session}/>
