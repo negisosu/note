@@ -1,3 +1,4 @@
+import Tiptap from "@/components/elements/Tiptap/Tiptap"
 import prisma from "@/lib/prisma"
 import { notFound } from "next/navigation"
 
@@ -21,11 +22,12 @@ export default async function Page({ params }: PageProps) {
         notFound()
     }
 
-    console.log(note)
-
     return(
-        <div>
-            {note.id}
-        </div>
+        <>
+            <div>{note.title}</div>
+            <Tiptap
+            defaultValue={note.body}
+            />
+        </>
     )
 }

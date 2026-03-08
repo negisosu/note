@@ -9,7 +9,7 @@ async function createEmptyNote() {
 
     const session = await getServerSession();
     if (!session) {
-        redirect("/sign-in");
+        redirect("/");
     }
 
     const note = await prisma.note.create({

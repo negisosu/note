@@ -1,0 +1,16 @@
+.tiptap [data-placeholder].is-empty::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.tiptap.ProseMirror:focus,
+.tiptap .ProseMirror:focus,
+.tiptap.ProseMirror:focus-visible,
+.tiptap .ProseMirror:focus-visible {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
