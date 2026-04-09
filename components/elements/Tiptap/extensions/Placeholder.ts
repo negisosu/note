@@ -1,7 +1,6 @@
 import { Placeholder } from "@tiptap/extensions";
 
-export const PlaceholderKit = [
-    Placeholder.configure({
+export const PlaceholderExtension = Placeholder.configure({
         placeholder: ({ node }) => {
             switch (node.type.name) {
                 case "heading":
@@ -15,4 +14,3 @@ export const PlaceholderKit = [
             }
         }
     })
-]

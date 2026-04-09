@@ -2,7 +2,8 @@
 
 import { useEditor, EditorContent, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { PlaceholderKit } from './extensions/Placeholder'
+import BubbleMenu from '@tiptap/extension-bubble-menu'
+import { PlaceholderExtension } from './extensions/Placeholder'
 import '@/app/tiptap.css'
 import '@/app/markdown.css'
 import { useDebouncedCallback } from "use-debounce"
@@ -24,7 +25,8 @@ const Tiptap = ({ note, updateNoteBody }: TiptapProps) => {
                     levels: [1, 2, 3]
                 }
             }),
-            ...PlaceholderKit,
+            PlaceholderExtension,
+            BubbleMenu
         ],
         content: note.body as JSONContent,
         // Don't render immediately on the server to avoid SSR issues
@@ -36,10 +38,12 @@ const Tiptap = ({ note, updateNoteBody }: TiptapProps) => {
         }, 1200)
     })
 
-    return <EditorContent
-        editor={editor}
-        className="tiptap markdown-body min-w-full"
-    />
+    return <>
+        <EditorContent
+            editor={editor}
+            className="tiptap markdown-body min-w-full"
+        />
+    </>
 }
 
 export default Tiptap
