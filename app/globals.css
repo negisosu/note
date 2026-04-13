@@ -48,6 +48,23 @@
   --radius-4xl: calc(var(--radius) + 16px);
   --color-brand: var(--brand);
   --color-highlight: var(--highlight);
+  --color-myui-background: var(--myui-background);
+  --color-myui-foreground: var(--myui-foreground);
+  --color-myui-surface: var(--myui-surface);
+  --color-myui-surface-foreground: var(--myui-surface-foreground);
+  --color-myui-primary: var(--myui-primary);
+  --color-myui-primary-foreground: var(--myui-primary-foreground);
+  --color-myui-secondary: var(--myui-secondary);
+  --color-myui-secondary-foreground: var(--myui-secondary-foreground);
+  --color-myui-muted: var(--myui-muted);
+  --color-myui-muted-foreground: var(--myui-muted-foreground);
+  --color-myui-accent: var(--myui-accent);
+  --color-myui-accent-foreground: var(--myui-accent-foreground);
+  --color-myui-destructive: var(--myui-destructive);
+  --color-myui-destructive-foreground: var(--myui-destructive-foreground);
+  --color-myui-border: var(--myui-border);
+  --color-myui-input: var(--myui-input);
+  --color-myui-ring: var(--myui-ring);
 }
 
 :root {
@@ -85,6 +102,23 @@
   --sidebar-ring: oklch(0.708 0 0);
   --brand: oklch(0.623 0.214 259.815);
   --highlight: oklch(0.852 0.199 91.936);
+  --myui-background: oklch(0.99 0.01 145);
+  --myui-foreground: oklch(0.16 0.015 145);
+  --myui-surface: oklch(1 0 0);
+  --myui-surface-foreground: oklch(0.16 0.015 145);
+  --myui-primary: oklch(0.62 0.18 145);
+  --myui-primary-foreground: oklch(0.99 0.005 145);
+  --myui-secondary: oklch(0.22 0.02 145);
+  --myui-secondary-foreground: oklch(0.98 0.004 145);
+  --myui-muted: oklch(0.95 0.012 145);
+  --myui-muted-foreground: oklch(0.42 0.02 145);
+  --myui-accent: oklch(0.94 0.06 145);
+  --myui-accent-foreground: oklch(0.2 0.02 145);
+  --myui-destructive: oklch(0.54 0.19 28);
+  --myui-destructive-foreground: oklch(0.98 0.004 145);
+  --myui-border: oklch(0.88 0.015 145);
+  --myui-input: oklch(0.92 0.012 145);
+  --myui-ring: oklch(0.68 0.16 145);
 }
 
 .dark {
