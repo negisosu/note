@@ -24,6 +24,8 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  notes         Note[]
+
   @@unique([email])
   @@map("user")
 }
@@ -80,6 +82,8 @@ model Note {
   id String @id @default(uuid())
   title String
   body Json
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

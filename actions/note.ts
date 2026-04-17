@@ -4,6 +4,7 @@ import { getServerSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import type { JSONContent } from "@tiptap/core";
+import { Note } from "@/types/note";
 
 const EMPTY_TIPTAP_DOC_JSON: JSONContent = {
     type: "doc",
@@ -23,6 +24,7 @@ export async function createEmptyNoteAction() {
             data: {
                 title: "",
                 body: EMPTY_TIPTAP_DOC_JSON,
+                userId: session.user.id
             },
         });
         noteId = note.id;
@@ -83,5 +85,46 @@ export async function updateNoteTitleAction(input: UpdateNoteTitleInput) {
     }catch(err) {
         console.error("Failed to update note title:", err);
         throw new Error("ノートタイトルの更新に失敗しました。");
+    }
+}
+
+type GetNoteByIdInput = {
+    id: string
+}
+
+export async function getNoteById(input: GetNoteByIdInput): Promise<Note | null> {
+    const session = await getServerSession()
+    if (!session) {
+        redirect("/")
+    }
+
+    try{
+        return await prisma.note.findUnique({
+            where: {
+                id: input.id,
+                userId: session.user.id
+            }
+        })
+    }catch(err){
+        console.error("Failed to get note:", err)
+        throw new Error("ノートの取得に失敗しました。")
+    }
+}
+
+export async function getNotes(): Promise<Note[]>{
+    const session = await getServerSession()
+    if (!session) {
+        redirect("/")
+    }
+
+    try{
+        return await prisma.note.findMany({
+            where: {
+                userId: session.user.id
+            }
+        })
+    }catch(err){
+        console.error("Failed to get notes:", err)
+        throw new Error("エラーの取得に失敗しました")
     }
 }

@@ -1,11 +1,16 @@
-import { SessionIcon } from "@/components/elements/SessionIcon";
 import { getServerSession } from "@/lib/auth-server";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/myui/button";
 import { createEmptyNoteAction } from "@/actions/note";
+import { redirect } from "next/navigation";
+import { NoteTableContainer } from "@/components/Note/NoteTableContainer";
 
 export default async function Page() {
 
     const session = await getServerSession()
+
+    if(!session) {
+        redirect("/")
+    }
 
     return(
         <div>
@@ -13,7 +18,7 @@ export default async function Page() {
             <form action={createEmptyNoteAction}>
                 <Button type="submit">新規ノート作成</Button>
             </form>
-            <SessionIcon session={session}/>
+            <NoteTableContainer/>
         </div>
     )
 }

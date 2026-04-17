@@ -1,6 +1,7 @@
 import { getServerSession } from "@/lib/auth-server"
-import { DashboardButton } from "../elements/DashboardButton"
 import { SignInButton } from "../elements/SignInButton"
+import { Button } from "../myui/button"
+import { ArrowRight } from "lucide-react"
 
 export async function LPHeader() {
 
@@ -13,7 +14,9 @@ export async function LPHeader() {
             </div>
             <div className="w-64 flex items-center justify-center">
                 {session ? (
-                    <DashboardButton/>
+                    <Button endIcon={ArrowRight}>
+                        ダッシュボードへ
+                    </Button>
                 ) : (
                     <SignInButton/>
                 )}
