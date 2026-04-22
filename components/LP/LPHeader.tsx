@@ -2,6 +2,7 @@ import { getServerSession } from "@/lib/auth-server"
 import { SignInButton } from "../elements/SignInButton"
 import { Button } from "../myui/button"
 import { ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 export async function LPHeader() {
 
@@ -14,9 +15,11 @@ export async function LPHeader() {
             </div>
             <div className="w-64 flex items-center justify-center">
                 {session ? (
-                    <Button endIcon={ArrowRight}>
-                        ダッシュボードへ
-                    </Button>
+                    <Link href={"/dashboard"}>
+                        <Button endIcon={ArrowRight}>
+                            ダッシュボードへ
+                        </Button>
+                    </Link>
                 ) : (
                     <SignInButton/>
                 )}
