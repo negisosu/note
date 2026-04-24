@@ -60,6 +60,7 @@ export default $config({
         CLOUDFLARE_DEFAULT_ACCOUNT_ID: process.env.CLOUDFLARE_DEFAULT_ACCOUNT_ID!,
       },
       domain: {
+        // 環境変数でCloudflareのトークンやIDを渡しているため(dnsの編集権限あり)、dnsレコードは自動追加される
         name: `${$app.stage}.note.negisosu.com`,
         dns: sst.cloudflare.dns(),
       },

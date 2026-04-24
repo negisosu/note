@@ -13,8 +13,7 @@ export default async function Page() {
     }
 
     return(
-        <div>
-            dashboard
+        <div className="flex flex-col gap-4 md:gap-8">
             <form action={createEmptyNoteAction}>
                 <Button type="submit">新規ノート作成</Button>
             </form>

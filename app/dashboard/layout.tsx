@@ -20,8 +20,8 @@ export default async function Layout({
     <>
         <SidebarProvider>
             <AppSidebar/>
-            <SidebarTrigger className="md:hidden"/>
             <PageContainer>
+                <SidebarTrigger className="md:hidden"/>
                 {children}
             </PageContainer>
         </SidebarProvider>
